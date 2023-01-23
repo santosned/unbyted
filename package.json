@@ -16,7 +16,7 @@
   },
   "scripts": {
     "format": "prettier --write .",
-    "lint": "eslint --exit-on-fatal-error --color --ext .js --fix .",
+    "lint": "eslint --exit-on-fatal-error --color --ext .ts --fix .",
     "build": "rollup --config --bundleConfigAsCjs",
     "dev": "ts-node ./package/index.ts",
     "test:lint": "eslint . --format unix --max-warnings 1",
@@ -43,6 +43,7 @@
     "@rollup/plugin-typescript": "^11.0.0",
     "@typescript-eslint/eslint-plugin": "^5.48.2",
     "eslint": "^8.32.0",
+    "eslint-config-prettier": "^8.6.0",
     "eslint-config-standard-with-typescript": "^31.0.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.6.1",
