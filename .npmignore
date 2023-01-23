@@ -1,0 +1,9 @@
+.eslintrc.json
+.eslintignore
+.prettierrc.json
+.prettierignore
+rollup.config.js
+tsconfig.json
+package
+docs
+*.tgz
