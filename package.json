@@ -1,6 +1,6 @@
 {
   "name": "unbyted",
-  "description": "Turn bytes into decimal or binary measurement units.",
+  "description": "Turn bytes into readable measurement units.",
   "version": "0.1.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
