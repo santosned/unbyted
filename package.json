@@ -3,7 +3,11 @@
   "description": "Turn bytes into decimal or binary measurement units.",
   "version": "0.1.0",
   "scripts": {
-    "dev": "ts-node ./package/index.ts"
+    "format": "prettier --write .",
+    "lint": "eslint --exit-on-fatal-error --color --ext .js --fix .",
+    "dev": "ts-node ./package/index.ts",
+    "test:lint": "eslint . --format unix --max-warnings 1",
+    "test:format": "prettier --check ."
   },
   "keywords": [
     "bytes",
