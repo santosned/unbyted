@@ -27,10 +27,23 @@
     "url": "https://github.com/santosned/unbyted.git"
   },
   "keywords": [
+    "unbyted",
     "bytes",
     "bits",
+    "pretty",
     "format",
-    "convert"
+    "convert",
+    "transform",
+    "decimal",
+    "binary",
+    "measurement",
+    "units",
+    "human",
+    "readable",
+    "typescript",
+    "javascript",
+    "browser",
+    "node"
   ],
   "author": "E. M. Santos <santosned@proton.me>",
   "license": "MIT",
