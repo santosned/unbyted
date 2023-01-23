@@ -1,0 +1,71 @@
+{
+  "name": "unbyted",
+  "description": "Turn bytes into readable measurement units.",
+  "version": "0.1.0",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "default": "./dist/index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint --exit-on-fatal-error --color --ext .ts --fix .",
+    "build": "rollup --config --bundleConfigAsCjs",
+    "dev": "ts-node ./package/index.ts",
+    "test:lint": "eslint . --format unix --max-warnings 1",
+    "test:format": "prettier --check ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/santosned/unbyted.git"
+  },
+  "keywords": [
+    "unbyted",
+    "bytes",
+    "bits",
+    "pretty",
+    "format",
+    "convert",
+    "transform",
+    "decimal",
+    "binary",
+    "measurement",
+    "units",
+    "human",
+    "readable",
+    "typescript",
+    "javascript",
+    "browser",
+    "node"
+  ],
+  "author": "E. M. Santos <santosned@proton.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/santosned/unbyted/issues"
+  },
+  "homepage": "https://github.com/santosned/unbyted#readme",
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.3.0",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.48.2",
+    "eslint": "^8.32.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-standard-with-typescript": "^31.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "prettier": "^2.8.3",
+    "rollup": "^3.10.1",
+    "rollup-plugin-typescript2": "^0.34.1",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.4.1",
+    "typescript": "^4.9.4"
+  }
+}
