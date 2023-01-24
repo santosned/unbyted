@@ -1,3 +1,9 @@
+type UnitsLength<T, N extends number, R extends T[] = []> = number extends N
+  ? T[]
+  : R['length'] extends N
+  ? R
+  : UnitsLength<T, N, [T, ...R]>
+
 interface UnbytedOptions {
   /** Include units of measurement or not (default: true) */
   unit?: boolean
@@ -16,7 +22,7 @@ interface UnbytedOptions {
    * ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB']
    * ```
    */
-  decimalUnits?: string[]
+  decimalUnits?: UnitsLength<string, 7>
 
   /**
    * Replace the default binary units with other units.
@@ -26,7 +32,7 @@ interface UnbytedOptions {
    * ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB']
    * ```
    */
-  binaryUnits?: string[]
+  binaryUnits?: UnitsLength<string, 7>
 
   /** A `boolean` that controls whether or not bytes unit are displayed. By default, it's not displayed; instead, they are represented as 'KB' or 'KiB'. */
   bytes?: boolean
@@ -49,24 +55,34 @@ export class Unbyted {
    * @since v0.1.0
    */
   constructor(options: UnbytedOptions = {}) {
+    const { binaryUnits, decimalUnits, unit, bytes, trim, decimals } = options
+
+    if (binaryUnits instanceof Array && binaryUnits.length !== 7) {
+      throw new Error('binaryUnits requires an array containing 7 units.')
+    }
+
+    if (decimalUnits instanceof Array && decimalUnits.length !== 7) {
+      throw new Error('binaryUnits requires an array containing 7 units.')
+    }
+
     const defaultDecimalUnits = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB']
     const defaultBinaryUnits = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB']
 
-    this.applyUnit = typeof options?.unit === 'boolean' ? options.unit : true
+    this.applyUnit = typeof unit === 'boolean' ? unit : true
 
-    this.allowBytes = typeof options?.bytes === 'boolean' ? options.bytes : false
-    this.trimDecimals = typeof options?.trim === 'boolean' ? options.trim : false
+    this.allowBytes = typeof bytes === 'boolean' ? bytes : false
+    this.trimDecimals = typeof trim === 'boolean' ? trim : false
 
-    this.decimals = typeof options?.decimals === 'number' ? options.decimals : 2
+    this.decimals = typeof decimals === 'number' ? decimals : 2
 
     this.binaryUnitValue = 1024
     this.decimalUnitValue = 1000
 
     this.binaryUnits = new Set(
-      options?.binaryUnits instanceof Array ? options.binaryUnits : defaultBinaryUnits
+      binaryUnits instanceof Array ? binaryUnits : defaultBinaryUnits
     )
     this.decimalUnits = new Set(
-      options?.decimalUnits instanceof Array ? options.decimalUnits : defaultDecimalUnits
+      decimalUnits instanceof Array ? decimalUnits : defaultDecimalUnits
     )
   }
 
@@ -98,12 +114,18 @@ export class Unbyted {
    * @since v0.1.0
    */
   private autoFormat(bytes: number, unitValue: number): string {
+    if (typeof bytes !== 'number') {
+      throw new TypeError(
+        `The bytes cannot be of type '${typeof bytes}', enter a number please.`
+      )
+    }
+
     const { applyUnit, decimals, trimDecimals, allowBytes } = this
 
     let result = ''
 
     /** The bytes to be converted. */
-    let dividend = bytes
+    let dividend = bytes >= 0 ? bytes : 0
 
     /** The exponent value calculated using the `bytes` and `unitValue` given*/
     let exponent = Math.max(0, Math.floor(Math.log(dividend) / Math.log(unitValue)))
