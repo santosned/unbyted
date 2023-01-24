@@ -12,27 +12,34 @@ describe('new Unbyted instance', () => {
   test('turns bytes to binary string', () => {
     const unbyted = new Unbyted()
 
-    expect(unbyted.toBinaryString()).toBe('0.00 KiB')
+    expect(unbyted.toBinaryString(0)).toBe('0.00 KiB')
     expect(unbyted.toBinaryString(100)).toBe('0.10 KiB')
     expect(unbyted.toBinaryString(-100)).toBe('0.00 KiB')
-  })
-
-  test('trowns when given invalid bytes', () => {
-    const unbyted = new Unbyted()
-
-    // @ts-ignore
-    expect(() => unbyted.toBinaryString({})).toThrow()
-    // @ts-ignore
-    expect(() => unbyted.toBinaryString(null)).toThrow()
-    // @ts-ignore
-    expect(() => unbyted.toBinaryString('100')).toThrow()
   })
 
   test('turns bytes to decimal string', () => {
     const unbyted = new Unbyted()
 
-    expect(unbyted.toDecimalString()).toBe('0.00 KB')
+    expect(unbyted.toDecimalString(0)).toBe('0.00 KB')
     expect(unbyted.toDecimalString(100)).toBe('0.10 KB')
+  })
+
+  test('trowns when given invalid bytes', () => {
+    const unbyted = new Unbyted()
+
+    // @ts-expect-error: tests error handling
+    expect(() => unbyted.toBinaryString({})).toThrow()
+    // @ts-expect-error: tests error handling
+    expect(() => unbyted.toBinaryString(null)).toThrow()
+    // @ts-expect-error: tests error handling
+    expect(() => unbyted.toBinaryString('100')).toThrow()
+
+    // @ts-expect-error: tests error handling
+    expect(() => unbyted.toDecimalString({})).toThrow()
+    // @ts-expect-error: tests error handling
+    expect(() => unbyted.toDecimalString(null)).toThrow()
+    // @ts-expect-error: tests error handling
+    expect(() => unbyted.toDecimalString('100')).toThrow()
   })
 
   test('trim measurement unit value', () => {
@@ -101,7 +108,7 @@ describe('Custom measurement units', () => {
     expect(
       () =>
         new Unbyted({
-          // @ts-ignore
+          // @ts-expect-error: tests error handling
           binaryUnits: ['Bytes', 'Kibibytes', 'Mebibytes'],
         })
     ).toThrow()
@@ -109,7 +116,7 @@ describe('Custom measurement units', () => {
     expect(
       () =>
         new Unbyted({
-          // @ts-ignore
+          // @ts-expect-error: tests error handling
           decimalUnits: ['Bytes', 'Kilobytes', 'Megabytes'],
         })
     ).toThrow()
