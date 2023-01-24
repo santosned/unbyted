@@ -8,5 +8,5 @@
     "strict": true,
     "outDir": "dist"
   },
-  "include": ["package/**/*", "tests/**/*"]
+  "include": ["package/**/*"]
 }

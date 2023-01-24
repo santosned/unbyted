@@ -2,8 +2,9 @@
 .eslintignore
 .prettierrc.json
 .prettierignore
-rollup.config.js
+*.config.js
 tsconfig.json
 package
 docs
+test
 *.tgz
