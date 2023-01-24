@@ -4,6 +4,7 @@
 .prettierignore
 *.config.js
 tsconfig.json
+coverage
 package
 docs
 test
