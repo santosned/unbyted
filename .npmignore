@@ -3,6 +3,8 @@
 .prettierrc.json
 .prettierignore
 *.config.js
+.editorconfig
+.github
 tsconfig.json
 coverage
 package
