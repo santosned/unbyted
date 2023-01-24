@@ -92,7 +92,7 @@ export class Unbyted {
    * @return {string} an string containing the formatted bytes
    * @since v0.1.0
    */
-  public toBinaryString(bytes: number = 0): string {
+  public toBinaryString(bytes: number): string {
     return this.autoFormat(bytes, this.binaryUnitValue)
   }
 
@@ -102,7 +102,7 @@ export class Unbyted {
    * @return {string} an string containing the formatted bytes
    * @since v0.1.0
    */
-  public toDecimalString(bytes: number = 0): string {
+  public toDecimalString(bytes: number): string {
     return this.autoFormat(bytes, this.decimalUnitValue)
   }
 
@@ -125,7 +125,7 @@ export class Unbyted {
     let result = ''
 
     /** The bytes to be converted. */
-    let dividend = bytes >= 0 ? bytes : 0
+    const dividend = bytes >= 0 ? bytes : 0
 
     /** The exponent value calculated using the `bytes` and `unitValue` given*/
     let exponent = Math.max(0, Math.floor(Math.log(dividend) / Math.log(unitValue)))
