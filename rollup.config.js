@@ -25,7 +25,7 @@ export default [
       format: 'es',
     },
     plugins: [
-      typescript({ compilerOptions: { declaration: true } }),
+      typescript({ compilerOptions: { declaration: true }, exclude: ['test/**/*'] }),
       terser({
         ecma: 5,
         module: true,

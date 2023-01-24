@@ -4,8 +4,9 @@ Turn bytes into readable measurement units
 
 ## Features
 
-- 🪶 **Small:** Barely **2 KB** gzipped
+- 🪶 **Small:** Roughly **4 KB** gzipped
 - 🗃️ **Typed:** Ships with **types & JSDoc**
+- 🛡️ **Bulletproof**: Written in **TypeScript** with **100%** test coverage.
 - 💸 **Works everywhere:** Supports **browsers** and **Node.js**
 - 🦅 **Dependency-free**
 
@@ -61,7 +62,14 @@ Although there is no right or wrong answer, [Binary](#binary) units are usually 
 ### Custom units
 
 <details>
-<summary><strong><code>new Unbyted(options)</code></strong></summary><br/>
+
+<summary>
+  <strong>
+    <code>new Unbyted(options)</code>
+  </strong>
+</summary>
+
+<br/>
 
 ```js
 import Unbyted from 'unbyted'
@@ -93,7 +101,7 @@ new Unbyted({
 
 // Replace the default Binary units with other units.
 new Unbyted({
-  decimalUnits: [
+  binaryUnits: [
     'Bytes',
     'Kibibytes',
     'Mebibytes',
