@@ -1,7 +1,7 @@
 {
   "name": "unbyted",
   "description": "Turn bytes into readable measurement units.",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./@types/index.d.ts",
@@ -17,8 +17,7 @@
     "test": "jest",
     "test:lint": "eslint . --ext .ts --format unix --max-warnings 1",
     "test:format": "prettier --check .",
-    "prepublish": "npm run build",
-    "publish": "npm publish"
+    "prepack": "npm run build"
   },
   "repository": {
     "type": "git",
