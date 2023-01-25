@@ -45,31 +45,17 @@ declare namespace Unbyted {
     ? R
     : UnitsLength<T, N, [T, ...R]>
   interface UnbytedOptions {
-    /** Include units of measurement or not (default: true) */
+    /** Include units of measurement or not. (default: true) */
     unit?: boolean
-    /** The number of decimal places (default: 2) */
+    /** The number of decimal places. (default: 2) */
     decimals?: number
     /** Should remove zero from the end or not. (default: false) */
     trim?: boolean
-    /**
-     * Replace the default decimals units with other units.
-     * @example
-     * ```js
-     * // The default decimal units:
-     * ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB']
-     * ```
-     */
+    /** Replace the default decimals symbols with 7 other units symbols. */
     decimalUnits?: UnitsLength<string, 7>
-    /**
-     * Replace the default binary units with other units.
-     * @example
-     * ```js
-     * // The default binary units:
-     * ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB']
-     * ```
-     */
+    /** Replace the default binary symbols with 7 other units symbols. */
     binaryUnits?: UnitsLength<string, 7>
-    /** A `boolean` that controls whether or not bytes unit are displayed. By default, it's not displayed; instead, they are represented as 'KB' or 'KiB'. */
+    /** Display bytes (B) unit or not. (default: false) */
     bytes?: boolean
   }
 }
