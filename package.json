@@ -17,8 +17,7 @@
     "test": "jest",
     "test:lint": "eslint . --ext .ts --format unix --max-warnings 1",
     "test:format": "prettier --check .",
-    "prepublish": "npm run build",
-    "publish": "npm publish"
+    "prepack": "npm run build"
   },
   "repository": {
     "type": "git",
