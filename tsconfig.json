@@ -1,7 +1,12 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "pretty": true,
+    "target": "ES5",
     "module": "ESNext",
+    "lib": ["es5"],
+    "allowUnusedLabels": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
     "declaration": true,

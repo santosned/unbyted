@@ -11,3 +11,5 @@ package
 docs
 test
 *.tgz
+dist/*.d.ts
+out

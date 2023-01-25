@@ -1,24 +1,19 @@
 {
   "name": "unbyted",
   "description": "Turn bytes into readable measurement units.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "default": "./dist/index.mjs"
-    },
-    "./package.json": "./package.json"
+  "types": "./@types/index.d.ts",
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint . --ext .ts --fix",
     "build": "rollup --config --bundleConfigAsCjs",
     "dev": "ts-node ./package/index.ts",
+    "dev:types": "tsc --watch --emitDeclarationOnly --module commonjs --declarationDir out",
     "test": "jest",
     "test:lint": "eslint . --ext .ts --format unix --max-warnings 1",
     "test:format": "prettier --check ."
@@ -64,6 +59,7 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.6.1",
     "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-tsdoc": "^0.2.17",
     "jest": "^29.3.1",
     "prettier": "^2.8.3",
     "rollup": "^3.10.1",

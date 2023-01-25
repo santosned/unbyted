@@ -1,5 +1,5 @@
 import { describe, expect, test } from '@jest/globals'
-import { Unbyted } from '../package/unbyted'
+import Unbyted from '../package/index'
 
 describe('new Unbyted instance', () => {
   test('exposes the public API', () => {
