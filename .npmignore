@@ -13,3 +13,5 @@ test
 *.tgz
 dist/*.d.ts
 out
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
