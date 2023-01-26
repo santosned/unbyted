@@ -1,5 +1,9 @@
 # Unbyted
 
+![GitHub](https://img.shields.io/github/license/santosned/unbyted?style=flat&colorA=black&colorB=black)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/santosned/unbyted/node.js.yml?style=flat&colorA=black&colorB=black)
+![GitHub issues](https://img.shields.io/github/issues/santosned/unbyted?style=flat&colorA=black&colorB=black)
+
 Turn bytes into readable measurement units
 
 ## Features
@@ -86,7 +90,7 @@ new Unbyted({ trim: false })
 // Display bytes (B) unit or not. (default: false)
 new Unbyted({ bytes: false })
 
-// Replace the default Decimal units with other units.
+// Replace the default decimals symbols with 7 other units symbols.
 new Unbyted({
   decimalUnits: [
     'Bytes',
@@ -99,7 +103,7 @@ new Unbyted({
   ],
 })
 
-// Replace the default Binary units with other units.
+// Replace the default binary symbols with 7 other units symbols.
 new Unbyted({
   binaryUnits: [
     'Bytes',
@@ -154,6 +158,20 @@ unbyted.toDecimalString(1005980)
 ```
 
 </details>
+
+## Contributing
+
+See the [contributing guide](CONTRIBUTING.md) for detailed instructions on how to get started with our project.
+
+There are a few [types of contributions](docs/contributing/TYPES_OF_CONTRIBUTIONS.md) welcomed, some of which do not require you to write a single line of code.
+
+If you want to contribute, you can go through our [existing issues](https://github.com/santosned/unbyted/issues) for something to work on. When you're ready, go to [Getting Started with Contributing](CONTRIBUTING.md) for more information.
+
+## Feedback
+
+- 🙋 Ask questions at [Github Q&A](https://github.com/santosned/unbyted/discussions/categories/q-a)
+- 📝 Request new features at [Github Issues](https://github.com/santosned/unbyted/issues) or [Github Ideas](https://github.com/santosned/unbyted/discussions/categories/ideas)
+- ⭐ Leave a star on the repo
 
 ## License
 
