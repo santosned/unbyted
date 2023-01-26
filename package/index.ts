@@ -1,4 +1,6 @@
-export default class Unbyted {
+import { UnbytedOptions } from './types'
+
+class Unbyted {
   private readonly applyUnit: boolean
   private readonly allowBytes: boolean
   private readonly trimDecimals: boolean
@@ -8,13 +10,7 @@ export default class Unbyted {
   private readonly binaryUnits: Set<string>
   private readonly decimalUnits: Set<string>
 
-  /**
-   * Format bytes into readable measurement units.
-   * @param options the options to control how the bytes will be formatted
-   * @return an API with methods to format bytes
-   * @since v0.1.0
-   */
-  constructor(options: Unbyted.UnbytedOptions = {}) {
+  constructor(options: UnbytedOptions = {}) {
     const { binaryUnits, decimalUnits, unit, bytes, trim, decimals } = options
 
     if (binaryUnits instanceof Array && binaryUnits.length !== 7) {
@@ -116,30 +112,17 @@ export default class Unbyted {
   }
 }
 
-declare namespace Unbyted {
-  type UnitsLength<T, N extends number, R extends T[] = []> = number extends N
-    ? T[]
-    : R['length'] extends N
-    ? R
-    : UnitsLength<T, N, [T, ...R]>
-
-  interface UnbytedOptions {
-    /** Include units of measurement or not. (default: true) */
-    unit?: boolean
-
-    /** The number of decimal places. (default: 2) */
-    decimals?: number
-
-    /** Should remove zero from the end or not. (default: false) */
-    trim?: boolean
-
-    /** Replace the default decimals symbols with 7 other units symbols. */
-    decimalUnits?: UnitsLength<string, 7>
-
-    /** Replace the default binary symbols with 7 other units symbols. */
-    binaryUnits?: UnitsLength<string, 7>
-
-    /** Display bytes (B) unit or not. (default: false) */
-    bytes?: boolean
-  }
+/**
+ * Creates new Unbyted instace to format bytes into readable measurement units.
+ * @param options the options to control how the bytes will be formatted
+ * @return an API with methods to format bytes
+ * @since v0.4.0
+ * @example
+ * ```js
+ * unbyted().toBinaryString(1000) // Returns: 0.98 KiB
+ * unbyted().toDecimalString(1000) // Returns: 1.00 KB
+ * ```
+ */
+export default function unbyted(options?: UnbytedOptions): Unbyted {
+  return new Unbyted(options)
 }
