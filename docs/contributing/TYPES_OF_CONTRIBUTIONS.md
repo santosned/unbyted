@@ -16,7 +16,7 @@ If it's something new, open an issue using a [template](https://github.com/santo
 
 A [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) is a way to suggest changes in our repository.
 
-If you want to add one or more icons into the project, please [fill a issue](https://github.com/santosned/unbyted/issues/new/choose) before open a pull requests.
+If you want to add one or more features to the project, please [fill a issue](https://github.com/santosned/unbyted/issues/new/choose) before open a pull requests.
 
 ### 📞 Support
 
@@ -31,7 +31,7 @@ Unfortunately, we just can't help with support questions in this repository. If 
 
 ### 🌎 Translations
 
-The source content in this repository is written in **English**. It's expected that translating this project to other languages becomes a topic in the future, but there's no plan while in **early development**.
+The source content in this repository is written in **English**.
 
 ### ⚖️ Policy
 
