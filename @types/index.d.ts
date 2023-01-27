@@ -42,6 +42,14 @@ declare class Unbyted {
    * @since v0.1.0
    */
   public toDecimalString(bytes: number): string
+  /**
+   * Automatically format bytes into readable measurement units. This is used internally only.
+   * @param {number} bytes the bytes to be formatted
+   * @param {number} unitValue the base unit value for the conversion
+   * @return {string} an string containing the formatted bytes
+   * @since v0.1.0
+   */
+  private autoFormat(bytes: number, unitValue: number): string
 }
 /**
  * Creates new Unbyted instace to format bytes into readable measurement units.
