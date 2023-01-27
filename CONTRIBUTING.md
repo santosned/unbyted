@@ -20,6 +20,7 @@ Read our [Code of Conduct](CODE_OF_CONDUCT.md) to keep our community approachabl
   - [Styleguides](#styleguides)
     - [Git Commit Messages](#git-commit-messages)
     - [Typescript code](#typescript-code)
+  - [Attribution](#attribution)
 
 ## Newcomers guide
 
@@ -99,3 +100,7 @@ Now you are part of our community ✨
 - Avoid platform-dependent code
 - Write clear and concise [TSDoc](https://tsdoc.org/) for functions
 - Keep the names of objects, functions, or variables informative and brief so that no further documentation is required to understand them.
+
+## Attribution
+
+This document is adapted from [Github Doc's Contributing Guide](https://github.com/github/docs/blob/main/CONTRIBUTING.md).
