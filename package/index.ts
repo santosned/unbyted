@@ -18,7 +18,7 @@ class Unbyted {
     }
 
     if (decimalUnits instanceof Array && decimalUnits.length !== 7) {
-      throw new Error('binaryUnits requires an array containing 7 units.')
+      throw new Error('decimalUnits requires an array containing 7 units.')
     }
 
     const defaultDecimalUnits = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB']
