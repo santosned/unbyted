@@ -26,6 +26,22 @@ Note that `npm ci` and `npm run build` are steps that should only be executed on
 - `npm ci` does a clean install of dependencies, without updating the `package-lock.json` file
 - `npm run build` creates the javascript files.
 
+## Types
+
+🛡️ Unbyted is also powered by [Typescript](https://www.typescriptlang.org/docs/) and [TSDoc](https://tsdoc.org/)!
+
+The type definitions is generated with `npm dev:types`, which should give you access to the `out/` folder containing our `index.d.ts` file. The `out/index.d.ts` file is only used as an template to build the type definitions inside `@types/index.d.ts`.
+
+Note that `out/index.d.ts` generates the type definitions as a module. It should be converted to an **export assignment**, which allows type definitions to work properly in both **CommonJS** and **Modules**.
+
+The export assignment is done as the following example:
+
+```ts
+//...
+declare unbyted(bytes: number): string
+export = unbyted
+```
+
 ## Other Resources
 
 For more info about working with this package, check out:
@@ -35,4 +51,4 @@ For more info about working with this package, check out:
 
 ## Attribution
 
-This document is adapted from [Types of Contributions](https://github.com/github/docs/blob/main/contributing/development.md) on [Github Docs](https://github.com/github/docs).
+This document is adapted from [Github Doc's Development Guide](https://github.com/github/docs/blob/main/contributing/development.md).
