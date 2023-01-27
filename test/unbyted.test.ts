@@ -56,8 +56,8 @@ describe('new Unbyted instance', () => {
     expect(methods.toDecimalString(100)).toBe('0.10')
   })
 
-  test('display bytes in measurement unit', () => {
-    const methods = unbyted({ bytes: true })
+  test('display bytes (B) measurement unit', () => {
+    const methods = unbyted({ includeBytes: true })
 
     expect(methods.toBinaryString(100)).toBe('100.00 B')
     expect(methods.toDecimalString(100)).toBe('100.00 B')
@@ -69,10 +69,22 @@ describe('new Unbyted instance', () => {
     expect(methods.toBinaryString(100)).toBe('0.1 KiB')
     expect(methods.toDecimalString(100)).toBe('0.1 KB')
   })
+
+  test('custom default binary units values', () => {
+    const methods = unbyted({ defaultBinaryUnitValue: 1000 })
+
+    expect(methods.toBinaryString(10000)).toBe('10.00 KiB')
+  })
+
+  test('custom default decimal units values', () => {
+    const methods = unbyted({ defaultDecimalUnitValue: 1024 })
+
+    expect(methods.toDecimalString(10000)).toBe('9.77 KB')
+  })
 })
 
-describe('Custom measurement units', () => {
-  test('valid custom binary units', () => {
+describe('Custom measurement units symbols', () => {
+  test('valid custom binary units symbols', () => {
     const methods = unbyted({
       binaryUnits: [
         'Bytes',
@@ -88,7 +100,7 @@ describe('Custom measurement units', () => {
     expect(methods.toBinaryString(100)).toBe('0.10 Kibibytes')
   })
 
-  test('valid custom decimal units', () => {
+  test('valid custom decimal units symbols', () => {
     const methods = unbyted({
       decimalUnits: [
         'Bytes',
@@ -104,7 +116,7 @@ describe('Custom measurement units', () => {
     expect(methods.toDecimalString(100)).toBe('0.10 Kilobytes')
   })
 
-  test('throws if 7 custom measurement units are not provided', () => {
+  test('throws if 7 custom measurement units symbols are not provided', () => {
     expect(() =>
       unbyted({
         // @ts-expect-error: tests error handling
