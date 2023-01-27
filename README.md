@@ -86,7 +86,7 @@ unbyted({ decimals: 2 })
 unbyted({ trim: false })
 
 // Display bytes (B) unit or not. (default: false)
-unbyted({ bytes: false })
+unbyted({ includeBytes: false })
 
 // Replace the default decimals symbols with 7 other units symbols.
 unbyted({
@@ -112,6 +112,16 @@ unbyted({
     'Pebibytes',
     'Exbibytes',
   ],
+})
+
+// Change the default binary unit value. (default: 1024)
+unbyted({
+  defaultBinaryUnitValue: 1024,
+})
+
+// Change the default decimal unit value. (default: 1000)
+unbyted({
+  defaultDecimalUnitValue: 1000,
 })
 ```
 
