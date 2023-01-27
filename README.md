@@ -17,12 +17,10 @@ Turn bytes into readable measurement units
 ## Getting started
 
 ```js
-import Unbyted from 'unbyted'
+import unbyted from 'unbyted'
 
-const unbyted = new Unbyted()
-
-unbyted.toBinaryString(1000000) // Returns: 976.56 KiB
-unbyted.toDecimalString(1000000) // Returns: 1.00 MB
+unbyted().toBinaryString(1000000) // Returns: 976.56 KiB
+unbyted().toDecimalString(1000000) // Returns: 1.00 MB
 ```
 
 ## Measurement Units
@@ -69,29 +67,29 @@ Although there is no right or wrong answer, [Binary](#binary) units are usually 
 
 <summary>
   <strong>
-    <code>new Unbyted(options)</code>
+    <code>unbyted(options)</code>
   </strong>
 </summary>
 
 <br/>
 
 ```js
-import Unbyted from 'unbyted'
+const unbyted = require('unbyted')
 
 // Include units of measurement or not (default: true)
-new Unbyted({ unit: true })
+unbyted({ unit: true })
 
 // The number of decimals places (default: 2)
-new Unbyted({ decimals: 2 })
+unbyted({ decimals: 2 })
 
 // Remove zero from the end or not. (default: false)
-new Unbyted({ trim: false })
+unbyted({ trim: false })
 
 // Display bytes (B) unit or not. (default: false)
-new Unbyted({ bytes: false })
+unbyted({ bytes: false })
 
 // Replace the default decimals symbols with 7 other units symbols.
-new Unbyted({
+unbyted({
   decimalUnits: [
     'Bytes',
     'Kilobytes',
@@ -104,7 +102,7 @@ new Unbyted({
 })
 
 // Replace the default binary symbols with 7 other units symbols.
-new Unbyted({
+unbyted({
   binaryUnits: [
     'Bytes',
     'Kibibytes',
@@ -132,10 +130,7 @@ new Unbyted({
 <br/>
 
 ```js
-const unbyted = new Unbyted()
-
-unbyted.toBinaryString(1005980)
-// Returns: 982.40 KiB
+unbyted().toBinaryString(1005980) // Returns: 982.40 KiB
 ```
 
 </details>
@@ -151,10 +146,7 @@ unbyted.toBinaryString(1005980)
 <br/>
 
 ```js
-const unbyted = new Unbyted()
-
-unbyted.toDecimalString(1005980)
-// Returns: 1.01 MB
+unbyted().toDecimalString(1005980) // Returns: 1.01 MB
 ```
 
 </details>
