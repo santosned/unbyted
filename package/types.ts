@@ -1,36 +1,26 @@
-type UnitsLength<T, N extends number, R extends T[] = []> = number extends N
-  ? T[]
-  : R['length'] extends N
-  ? R
-  : UnitsLength<T, N, [T, ...R]>
-export type Required<T> = {
+type Required<T> = {
   [P in keyof T]-?: T[P]
 }
 export interface UnbytedOptions {
-  /** Include units of measurement or not. (default: true) */
-  unit?: boolean
-
-  /** The number of decimal places. (default: 2) */
-  decimals?: number
-
-  /** Should remove zero from the end or not. (default: false) */
+  /** Trim decimal numbers when needed. (default: false) */
   trim?: boolean
-
-  /** Replace the default decimals symbols with 7 other units symbols. */
-  decimalUnits?: UnitsLength<string, 7>
-
-  /** Replace the default binary symbols with 7 other units symbols. */
-  binaryUnits?: UnitsLength<string, 7>
-
+  /** Include unit's symbols or not. (default: true) */
+  symbols?: boolean
   /** Display bytes (B) unit or not. (default: false) */
   includeBytes?: boolean
-
-  /** Change the default binary unit value. (default: 1024) */
-  defaultBinaryUnitValue?: number
-
-  /** Change the default decimal unit value. (default: 1000) */
-  defaultDecimalUnitValue?: number
+  /** The number of decimal places. (default: 2) */
+  decimals?: number
+  /** The bytes value in one binary unit. (default: `1024`) */
+  bytesInBinary?: number
+  /** The bytes value in one decimal unit. (default: `1000`) */
+  bytesInDecimal?: number
+  /** Define custom decimal units symbols. (Requires 7 strings) */
+  binaryUnits?: [string, string, string, string, string, string, string]
+  /** Define custom binary units symbols. (Requires 7 strings) */
+  decimalUnits?: [string, string, string, string, string, string, string]
 }
+
+export type FormatConfig = Required<UnbytedOptions>
 
 export type UnbytedReturns = {
   /**

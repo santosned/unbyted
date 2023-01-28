@@ -14,13 +14,11 @@ export default {
     },
   ],
   plugins: [
-    typescript({ compilerOptions: { declaration: false } }),
+    typescript({ compilerOptions: { declaration: false, emitDeclarationOnly: false } }),
     terser({
       ecma: 5,
       module: true,
       toplevel: true,
-      keep_classnames: true,
-      keep_fnames: true,
       compress: { pure_getters: true },
       format: { quote_style: 'original' },
     }),

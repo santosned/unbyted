@@ -2,6 +2,8 @@
 
 Thank you for the interest in contributing 😊
 
+There are a few [types of contributions](docs/contributing/TYPES_OF_CONTRIBUTIONS.md) welcomed, some of which do not require you to write a single line of code.
+
 Any contribution you make will be published at [github.com/santosned/unbyted](https://github.com/santosned/unbyted)
 
 Read our [Code of Conduct](CODE_OF_CONDUCT.md) to keep our community approachable and respectable.
