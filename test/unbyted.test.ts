@@ -49,8 +49,8 @@ describe('new Unbyted instance', () => {
     expect(methods.toDecimalString(100)).toBe('0.1 KB')
   })
 
-  test('remove measurement unit', () => {
-    const methods = unbyted({ unit: false })
+  test('remove measurement unit symbols', () => {
+    const methods = unbyted({ symbols: false })
 
     expect(methods.toBinaryString(100)).toBe('0.10')
     expect(methods.toDecimalString(100)).toBe('0.10')
@@ -71,13 +71,13 @@ describe('new Unbyted instance', () => {
   })
 
   test('custom default binary units values', () => {
-    const methods = unbyted({ defaultBinaryUnitValue: 1000 })
+    const methods = unbyted({ bytesInBinary: 1000 })
 
     expect(methods.toBinaryString(10000)).toBe('10.00 KiB')
   })
 
   test('custom default decimal units values', () => {
-    const methods = unbyted({ defaultDecimalUnitValue: 1024 })
+    const methods = unbyted({ bytesInDecimal: 1024 })
 
     expect(methods.toDecimalString(10000)).toBe('9.77 KB')
   })
