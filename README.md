@@ -8,7 +8,7 @@ Turn bytes into readable measurement units
 
 **Unbyted** uses `decimal` and `binary` units of measurement to express the size of storage data.
 
-[See more about the measurement units here](docs/MEASUREMENT_UNITS.md).
+See more about [Unbyted measurement units](docs/MEASUREMENT_UNITS.md).
 
 ## Features
 
@@ -23,10 +23,10 @@ Turn bytes into readable measurement units
 ```js
 import unbyted from 'unbyted' // OR: const unbyted = require('unbyted')
 
-const { toBinaryString, toDecimalString } = untyted({ trim: true })
+const { toBinaryString, toDecimalString } = unbyted({ trim: true })
 
-toBinaryString(1000000) // Returns: 976.56 KiB
-toDecimalString(1000000) // Returns: 1 MB
+toBinaryString(1000) // Returns: 0.98 KiB
+toDecimalString(1000) // Returns: 1 KB
 ```
 
 ### Customisation options
@@ -51,7 +51,3 @@ See the [contributing guide](CONTRIBUTING.md) for detailed instructions on how t
 - 🙋 Ask questions at [Github Q&A](https://github.com/santosned/unbyted/discussions/categories/q-a)
 - 📝 Request new features at [Github Issues](https://github.com/santosned/unbyted/issues)
 - ⭐ Leave a star on the repo
-
-## License
-
-Licensed under the [MIT](LICENSE.txt)
