@@ -1,28 +1,25 @@
-import { Required, UnbytedOptions } from './types'
+import { FormatConfig } from './types'
 
 /**
  * Automatically format bytes into readable measurement units. This is used internally only.
- * @param {number} bytes the bytes to be formatted
- * @param {string} key the key of the selected unit value
- * @return {string} an string containing the formatted bytes
+ * @param bytes the bytes to be formatted
+ * @param key the key of the selected unit value
+ * @return an string containing the formatted bytes
  * @since v0.1.0
  */
 export function autoFormat(
   bytes: number,
   key: 'binaryUnits' | 'decimalUnits',
-  config: Required<UnbytedOptions>
+  config: FormatConfig
 ): string {
   if (typeof bytes !== 'number') {
-    throw new TypeError(
-      `The bytes cannot be of type '${typeof bytes}', enter a number please.`
-    )
+    throw new TypeError(`The bytes cannot be of type '${typeof bytes}', enter a number please.`)
   }
 
   let result = ''
 
   /** the base unit value for the conversion  */
-  const unitValue =
-    key === 'binaryUnits' ? config.defaultBinaryUnitValue : config.defaultDecimalUnitValue
+  const unitValue = key === 'binaryUnits' ? config.bytesInBinary : config.bytesInDecimal
 
   /** The bytes to be converted. */
   const dividend = bytes >= 0 ? bytes : 0
@@ -49,5 +46,5 @@ export function autoFormat(
     result = Number.parseFloat(quotient.toString()).toFixed(config.decimals)
   }
 
-  return config.unit ? `${result} ${measurementUnit}` : result
+  return config.symbols ? `${result} ${measurementUnit}` : result
 }

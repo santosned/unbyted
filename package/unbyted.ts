@@ -1,11 +1,10 @@
 import { autoFormat } from './autoFormat'
-import { Required, UnbytedOptions, UnbytedReturns } from './types'
+import { FormatConfig, UnbytedOptions, UnbytedReturns } from './types'
 
 /**
- * Creates new Unbyted instace to format bytes into readable measurement units.
+ * Creates new Unbyted instance
  * @param options the options to control how the bytes will be formatted
- * @return properties to format bytes into [decimal](https://github.com/santosned/unbyted#decimal) or [binary](https://github.com/santosned/unbyted#binary) measurement units.
- * @since v1.0.0
+ * @return methods to turn bytes into readable measurement units
  * @example
  * ```js
  * unbyted().toBinaryString(1000) // Returns: 0.98 KiB
@@ -14,14 +13,14 @@ import { Required, UnbytedOptions, UnbytedReturns } from './types'
  */
 export function unbyted(options: UnbytedOptions = {}): UnbytedReturns {
   const {
-    unit,
+    symbols,
     includeBytes,
     trim,
     decimals,
     binaryUnits,
     decimalUnits,
-    defaultBinaryUnitValue,
-    defaultDecimalUnitValue,
+    bytesInBinary,
+    bytesInDecimal,
   } = options
 
   if (binaryUnits instanceof Array && binaryUnits.length !== 7) {
@@ -51,26 +50,19 @@ export function unbyted(options: UnbytedOptions = {}): UnbytedReturns {
     'EB',
   ]
 
-  const config: Required<UnbytedOptions> = {
-    unit: typeof unit === 'boolean' ? unit : true,
+  const config: FormatConfig = {
+    symbols: typeof symbols === 'boolean' ? symbols : true,
     includeBytes: typeof includeBytes === 'boolean' ? includeBytes : false,
     trim: typeof trim === 'boolean' ? trim : false,
     decimals: typeof decimals === 'number' ? decimals : 2,
     binaryUnits: binaryUnits instanceof Array ? binaryUnits : defaultBinaryUnits,
     decimalUnits: decimalUnits instanceof Array ? decimalUnits : defaultDecimalUnits,
-    defaultBinaryUnitValue:
-      typeof defaultBinaryUnitValue !== 'number' ? 1024 : defaultBinaryUnitValue,
-    defaultDecimalUnitValue:
-      typeof defaultDecimalUnitValue !== 'number' ? 1000 : defaultDecimalUnitValue,
+    bytesInBinary: typeof bytesInBinary !== 'number' ? 1024 : bytesInBinary,
+    bytesInDecimal: typeof bytesInDecimal !== 'number' ? 1000 : bytesInDecimal,
   }
 
-  function toBinaryString(bytes: number): string {
-    return autoFormat(bytes, 'binaryUnits', config)
+  return {
+    toBinaryString: (bytes: number): string => autoFormat(bytes, 'binaryUnits', config),
+    toDecimalString: (bytes: number): string => autoFormat(bytes, 'decimalUnits', config),
   }
-
-  function toDecimalString(bytes: number): string {
-    return autoFormat(bytes, 'decimalUnits', config)
-  }
-
-  return { toBinaryString, toDecimalString }
 }
