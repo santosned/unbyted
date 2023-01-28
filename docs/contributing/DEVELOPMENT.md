@@ -30,14 +30,14 @@ Note that `npm ci` and `npm run build` are steps that should only be executed on
 
 🛡️ Unbyted is also powered by [Typescript](https://www.typescriptlang.org/docs/) and [TSDoc](https://tsdoc.org/)!
 
-The type definitions is generated with `npm dev:types`, which should give you access to the `out/` folder containing our `index.d.ts` file. The `out/index.d.ts` file is only used as an template to build the type definitions inside `@types/index.d.ts`.
+The type definitions is generated with `npm run types`, which should give you access to the `out/` folder containing our `index.d.ts` file. The `out/index.d.ts` file is only used as an template to build the type definitions inside `@types/index.d.ts`.
 
 Note that `out/index.d.ts` generates the type definitions as a module. It should be converted to an **export assignment**, which allows type definitions to work properly in both **CommonJS** and **Modules**.
 
-The export assignment is done as the following example:
+The export assignment can be achieved like this:
 
 ```ts
-//...
+// Other types...
 declare unbyted(bytes: number): string
 export = unbyted
 ```
