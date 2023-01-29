@@ -1,50 +1,35 @@
+import { getExponent, getLog, max } from './helpers'
 import { FormatConfig } from './types'
+import { UNITS } from './units'
 
 /**
  * Automatically format bytes into readable measurement units. This is used internally only.
  * @param bytes the bytes to be formatted
- * @param key the key of the selected unit value
+ * @param id the id of the selected unit. `0` for `binary`, and `1` for decimal.
  * @return an string containing the formatted bytes
  * @since v0.1.0
  */
-export function autoFormat(
-  bytes: number,
-  key: 'binaryUnits' | 'decimalUnits',
-  config: FormatConfig
-): string {
-  if (typeof bytes !== 'number') {
+export function autoFormat(bytes: number, id: number, config: FormatConfig): string {
+  if (typeof bytes !== 'number' || !Number.isFinite(bytes)) {
     throw new TypeError(`The bytes cannot be of type '${typeof bytes}', enter a number please.`)
   }
 
-  let result = ''
+  const base = [1024, 1000][id]
 
-  /** the base unit value for the conversion  */
-  const unitValue = key === 'binaryUnits' ? config.bytesInBinary : config.bytesInDecimal
+  const measurementUnits = config.unitDisplay === 'long' ? UNITS[id][0] : UNITS[id][1]
 
-  /** The bytes to be converted. */
-  const dividend = bytes >= 0 ? bytes : 0
+  const dividend = max(0, bytes)
 
-  /** The exponent value calculated using the `bytes` and `unitValue` given*/
-  let exponent = Math.max(0, Math.floor(Math.log(dividend) / Math.log(unitValue)))
+  const exponent = getExponent(getLog(dividend, base), measurementUnits, config.includeBytes)
 
-  /** The quotient of the division (aka. measurement value) */
-  let quotient = dividend / Math.pow(unitValue, exponent)
+  const quotient = (dividend / base ** exponent).toPrecision(config.precision)
 
-  /* Turn bytes into KB or KiB when `includeBytes` are set to `false` */
-  if (!config.includeBytes && dividend < unitValue) {
-    quotient = quotient / unitValue
-    exponent = exponent + 1
-  }
+  const result = new Intl.NumberFormat(config.locales, {
+    maximumFractionDigits: config.digits,
+    minimumFractionDigits: config.trim ? 0 : config.digits,
+  }).format(Number(quotient))
 
-  /** The string containing an unit based on the exponent and measurement unit value. */
-  const measurementUnit = config[key][exponent]
-
-  /* Format the quotient into an custom floating-point number */
-  if (config.trim) {
-    result = Number.parseFloat(quotient.toFixed(config.decimals)).toString()
-  } else {
-    result = Number.parseFloat(quotient.toString()).toFixed(config.decimals)
-  }
-
-  return config.symbols ? `${result} ${measurementUnit}` : result
+  return config.symbols
+    ? `${result}${config.unitDisplay !== 'narrow' ? ' ' : ''}${measurementUnits[exponent]}`
+    : result
 }
