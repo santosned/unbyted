@@ -20,6 +20,8 @@ See more about [Unbyted measurement units](docs/MEASUREMENT_UNITS.md).
 
 ## Getting started
 
+After you run `npm i unbyted`, try it out:
+
 ```js
 import unbyted from 'unbyted' // OR: const unbyted = require('unbyted')
 
@@ -29,18 +31,7 @@ toBinaryString(1000) // Returns: 0.98 KiB
 toDecimalString(1000) // Returns: 1 KB
 ```
 
-### Customisation options
-
-| option           | type     | description                                               |
-| ---------------- | -------- | --------------------------------------------------------- |
-| `trim`           | boolean  | Trim decimal numbers when needed. (default: false)        |
-| `symbols`        | boolean  | Include unit's symbols or not. (default: true)            |
-| `includeBytes`   | boolean  | Display bytes (B) unit or not. (default: false)           |
-| `decimals`       | number   | The number of decimal places. (default: 2)                |
-| `bytesInBinary`  | number   | The bytes value in one binary unit. (default: `1024`)     |
-| `bytesInDecimal` | number   | The bytes value in one decimal unit. (default: `1000`)    |
-| `binaryUnits`    | string[] | Define custom binary units symbols. (Requires 7 strings)  |
-| `decimalUnits`   | string[] | Define custom decimal units symbols. (Requires 7 strings) |
+See the [API documentation](docs/UNBYTED_API.md) to learn more about options and usage.
 
 ## Contributing
 
@@ -50,4 +41,4 @@ See the [contributing guide](CONTRIBUTING.md) for detailed instructions on how t
 
 - 🙋 Ask questions at [Github Q&A](https://github.com/santosned/unbyted/discussions/categories/q-a)
 - 📝 Request new features at [Github Issues](https://github.com/santosned/unbyted/issues)
-- ⭐ Leave a star on the repo
+- ⭐ Leave a star on the [repo](https://github.com/santosned/unbyted)
