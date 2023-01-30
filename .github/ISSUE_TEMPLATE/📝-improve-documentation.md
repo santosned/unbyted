@@ -1,9 +1,10 @@
 ---
 name: "\U0001F4DD Improve documentation"
 about: Suggest improvements in the documentation.
-title: '[DOCS]: Your issue title goes here...'
+title: "[DOCS]: Your issue title goes here..."
 labels: documentation, triage
 assignees: ''
+
 ---
 
 ### Summary?
