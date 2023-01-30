@@ -1,10 +1,9 @@
 ---
 name: "\U0001F41E Bug report"
 about: Create a report to help us improve
-title: "[BUG]: Your issues title here..."
+title: '[BUG]: Your issues title here...'
 labels: triage
 assignees: ''
-
 ---
 
 **Describe the bug**

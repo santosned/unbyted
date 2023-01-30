@@ -1,10 +1,9 @@
 ---
 name: "\U0001F4A1Feature request"
 about: Suggest an idea for this project
-title: "[FEAT]: Your issue title goes here..."
+title: '[FEAT]: Your issue title goes here...'
 labels: triage
 assignees: ''
-
 ---
 
 **Is your feature request related to a problem? Please describe.**
