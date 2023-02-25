@@ -1,122 +1,98 @@
-import { describe, expect, test } from '@jest/globals'
-import unbyted from '../package/index'
+import Unbyted from '../package/index';
 
-const yotta = 2e25
-const zetta = 2e22
-const exa = 2e20
-const peta = 2e16
-const tera = 2e12
-const giga = 2e10
-const mega = 2e8
-const kilo = 2e4
+const yotta = 2e25;
+const zetta = 2e22;
+const exa = 2e20;
+const peta = 2e16;
+const tera = 2e12;
+const giga = 2e10;
+const mega = 2e8;
+const kilo = 2e4;
 
-describe('new Unbyted instance', () => {
-  test('turns bytes to binary string', () => {
-    const methods = unbyted()
+describe('Unbyted - Initialization', () => {
+  it('instantiate & expose public API', () => {
+    const methods = new Unbyted();
 
-    expect(methods.toBinaryString(kilo)).toBe('19.53 KiB')
-    expect(methods.toBinaryString(mega)).toBe('190.73 MiB')
-    expect(methods.toBinaryString(giga)).toBe('18.63 GiB')
-    expect(methods.toBinaryString(tera)).toBe('1.82 TiB')
-    expect(methods.toBinaryString(peta)).toBe('17.76 PiB')
-    expect(methods.toBinaryString(exa)).toBe('173.47 EiB')
-    expect(methods.toBinaryString(zetta)).toBe('16.94 ZiB')
-    expect(methods.toBinaryString(yotta)).toBe('16.54 YiB')
-  })
+    expect(typeof methods.toBinary).toBe('function');
+    expect(typeof methods.toDecimal).toBe('function');
+  });
 
-  test('turns bytes to decimal string', () => {
-    const methods = unbyted()
+  it('expose static methods', () => {
+    expect(Unbyted).toHaveProperty('toBinary');
+    expect(Unbyted).toHaveProperty('toDecimal');
+    expect(typeof Unbyted.toBinary).toBe('function');
+    expect(typeof Unbyted.toDecimal).toBe('function');
+  });
+});
 
-    expect(methods.toDecimalString(kilo)).toBe('20.00 KB')
-    expect(methods.toDecimalString(mega)).toBe('200.00 MB')
-    expect(methods.toDecimalString(giga)).toBe('20.00 GB')
-    expect(methods.toDecimalString(tera)).toBe('2.00 TB')
-    expect(methods.toDecimalString(peta)).toBe('20.00 PB')
-    expect(methods.toDecimalString(exa)).toBe('200.00 EB')
-    expect(methods.toDecimalString(zetta)).toBe('20.00 ZB')
-    expect(methods.toDecimalString(yotta)).toBe('20.00 YB')
-  })
+describe('Unbyted - Common Bytes Operations (CBO)', () => {
+  it('converts to binary', () => {
+    expect(Unbyted.toBinary(kilo)).toBe('19.53 KiB');
+    expect(Unbyted.toBinary(mega)).toBe('190.73 MiB');
+    expect(Unbyted.toBinary(giga)).toBe('18.63 GiB');
+    expect(Unbyted.toBinary(tera)).toBe('1.82 TiB');
+    expect(Unbyted.toBinary(peta)).toBe('17.76 PiB');
+    expect(Unbyted.toBinary(exa)).toBe('173.47 EiB');
+    expect(Unbyted.toBinary(zetta)).toBe('16.94 ZiB');
+    expect(Unbyted.toBinary(yotta)).toBe('16.54 YiB');
+  });
 
-  test('trowns when given invalid bytes', () => {
-    const methods = unbyted()
+  it('converts to decimal', () => {
+    expect(Unbyted.toDecimal(kilo)).toBe('20.00 KB');
+    expect(Unbyted.toDecimal(mega)).toBe('200.00 MB');
+    expect(Unbyted.toDecimal(giga)).toBe('20.00 GB');
+    expect(Unbyted.toDecimal(tera)).toBe('2.00 TB');
+    expect(Unbyted.toDecimal(peta)).toBe('20.00 PB');
+    expect(Unbyted.toDecimal(exa)).toBe('200.00 EB');
+    expect(Unbyted.toDecimal(zetta)).toBe('20.00 ZB');
+    expect(Unbyted.toDecimal(yotta)).toBe('20.00 YB');
+  });
+});
+
+describe('Unbyted - Customize Conversion Formats (CCF)', () => {
+  it('digits', () => {
+    expect(new Unbyted({ digits: 1 }).toBinary(1024)).toBe('1.0 KiB');
+    expect(new Unbyted({ digits: 3 }).toBinary(1024)).toBe('1.000 KiB');
+    expect(new Unbyted({ digits: 1 }).toDecimal(1000)).toBe('1.0 KB');
+    expect(new Unbyted({ digits: 3 }).toDecimal(1000)).toBe('1.000 KB');
+  });
+
+  it('trim', () => {
+    expect(new Unbyted({ trim: true }).toBinary(1024)).toBe('1 KiB');
+    expect(new Unbyted({ trim: true }).toDecimal(1000)).toBe('1 KB');
+  });
+
+  it('space', () => {
+    expect(new Unbyted({ space: false }).toBinary(1024)).toBe('1.00KiB');
+    expect(new Unbyted({ space: false }).toDecimal(1000)).toBe('1.00KB');
+  });
+});
+
+describe('Unbyted - Handles Code Exceptions (HCE)', () => {
+  it('handles empty bytes', () => {
+    expect(Unbyted.toBinary()).toBe('0.00 B');
+    expect(Unbyted.toDecimal()).toBe('0.00 B');
+    expect(new Unbyted().toBinary()).toBe('0.00 B');
+    expect(new Unbyted().toDecimal()).toBe('0.00 B');
+  });
+
+  it('trowns when caught invalid bytes', () => {
+    const methods = new Unbyted();
 
     // @ts-expect-error: tests error handling
-    expect(() => methods.toBinaryString({})).toThrow()
+    expect(() => methods.toBinary({})).toThrow();
     // @ts-expect-error: tests error handling
-    expect(() => methods.toBinaryString(null)).toThrow()
+    expect(() => methods.toBinary(null)).toThrow();
     // @ts-expect-error: tests error handling
-    expect(() => methods.toBinaryString('100')).toThrow()
-    expect(() => methods.toBinaryString(Infinity)).toThrow()
+    expect(() => methods.toBinary('100')).toThrow();
+    expect(() => methods.toBinary(Infinity)).toThrow();
 
     // @ts-expect-error: tests error handling
-    expect(() => methods.toDecimalString({})).toThrow()
+    expect(() => methods.toDecimal({})).toThrow();
     // @ts-expect-error: tests error handling
-    expect(() => methods.toDecimalString(null)).toThrow()
+    expect(() => methods.toDecimal(null)).toThrow();
     // @ts-expect-error: tests error handling
-    expect(() => methods.toDecimalString('100')).toThrow()
-    expect(() => methods.toDecimalString(Infinity)).toThrow()
-  })
-})
-
-describe('Unbyted Options', () => {
-  test('trim', () => {
-    const methods = unbyted({ trim: true })
-
-    expect(methods.toBinaryString(0)).toBe('0 KiB')
-    expect(methods.toDecimalString(0)).toBe('0 KB')
-  })
-
-  test('unitDisplay - short', () => {
-    const methods = unbyted({ unitDisplay: 'short' })
-
-    expect(methods.toBinaryString(0)).toBe('0.00 KiB')
-    expect(methods.toDecimalString(0)).toBe('0.00 KB')
-  })
-
-  test('unitDisplay - narrow', () => {
-    const methods = unbyted({ unitDisplay: 'narrow' })
-
-    expect(methods.toBinaryString(0)).toBe('0.00KiB')
-    expect(methods.toDecimalString(0)).toBe('0.00KB')
-  })
-
-  test('unitDisplay - narrow', () => {
-    const methods = unbyted({ unitDisplay: 'long' })
-
-    expect(methods.toBinaryString(0)).toBe('0.00 Kibibyte')
-    expect(methods.toDecimalString(0)).toBe('0.00 Kilobyte')
-  })
-
-  test('symbols', () => {
-    const methods = unbyted({ symbols: false })
-
-    expect(methods.toBinaryString(0)).toBe('0.00')
-    expect(methods.toDecimalString(0)).toBe('0.00')
-  })
-
-  test('includeBytes', () => {
-    const methods = unbyted({ includeBytes: true })
-
-    expect(methods.toDecimalString(200)).toBe('200.00 B')
-  })
-
-  test('digits', () => {
-    const methods = unbyted({ digits: 0 })
-
-    expect(methods.toDecimalString(kilo)).toBe('20 KB')
-  })
-
-  test('locales', () => {
-    const methods = unbyted({ locales: 'pt-BR' })
-
-    expect(methods.toBinaryString(kilo)).toBe('19,53 KiB')
-    expect(methods.toDecimalString(kilo)).toBe('20,00 KB')
-  })
-
-  test('precision', () => {
-    const methods = unbyted({ precision: 3 })
-
-    expect(methods.toBinaryString(mega)).toBe('191.00 MiB')
-    expect(methods.toDecimalString(mega)).toBe('200.00 MB')
-  })
-})
+    expect(() => methods.toDecimal('100')).toThrow();
+    expect(() => methods.toDecimal(Infinity)).toThrow();
+  });
+});
