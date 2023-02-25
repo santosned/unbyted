@@ -9,14 +9,17 @@
     "access": "public"
   },
   "scripts": {
-    "prelint": "prettier --write .",
+    "prettier": "prettier --write .",
+    "prettier-check": "prettier --check package/**/*.ts",
     "lint": "eslint . --ext .ts --fix",
+    "lint-check": "eslint package/** --ext .ts",
     "dev": "ts-node package/unbyted.ts",
     "build": "rollup --config --bundleConfigAsCjs",
-    "test": "jest",
-    "test:lint": "prettier --check . && eslint . --ext .ts",
+    "prepack": "npm run build",
     "benchmark": "ts-node test/benchmark.ts",
-    "prepack": "npm run build"
+    "test": "jest --maxWorkers=50%",
+    "test:watch": "jest --watch --maxWorkers=25%",
+    "test:ci": "jest --runInBand"
   },
   "repository": {
     "type": "git",
