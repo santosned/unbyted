@@ -1,1 +1,1 @@
-export { unbyted as default } from './unbyted'
+export { Unbyted as default } from './unbyted';

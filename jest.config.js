@@ -1,8 +1,13 @@
-/** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
-  preset: 'ts-jest',
+  transform: {
+    '^.+\\.m?(t|j)s$': '@swc/jest',
+  },
+  extensionsToTreatAsEsm: ['.ts'],
   testEnvironment: 'node',
+  roots: ['test'],
   collectCoverage: true,
+  verbose: true,
+  /* coverageReporters: ['text'], */
   coverageThreshold: {
     global: {
       statements: 100,
@@ -11,4 +16,4 @@ module.exports = {
       lines: 100,
     },
   },
-}
+};

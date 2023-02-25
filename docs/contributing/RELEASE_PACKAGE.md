@@ -5,4 +5,3 @@ Releases are automated by a workflow action as displayed in [Publishing Node.js 
 ### Additional Notes
 
 - The [Unbyted Releases](https://github.com/santosned/unbyted/releases) automatically generate the **release notes** which list all contributions since the last published release.
-- The early development releases may also include an compressed package (e.g. `unbyted-*.tgz`) that can be used for tests.
