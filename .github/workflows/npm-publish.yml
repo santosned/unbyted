@@ -5,32 +5,37 @@ name: Node.js Package
 
 on:
   release:
-    types: ['published']
+    types: [published]
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - run: npm ci
-      - run: npm run test:format --if-present
-      - run: npm run test:lint --if-present
-      - run: npm test
-      - run: npm pack
+      - name: Checkout
+        uses: actions/checkout@v3
 
-  publish-npm:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Setup Node.js 18
+        uses: actions/setup-node@v3
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: npm publish
+
+      - name: Setup NPM Dependencies
+        run: npm ci
+
+      - name: Run Prettier
+        run: npm run prettier
+
+      - name: Run Linter
+        run: npm run lint
+
+      - name: Run Jest tests
+        run: npm run test:ci
+
+      - name: Run NPM pack
+        run: npm pack
+
+      - name: Run NPM Publish
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
