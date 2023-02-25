@@ -11,7 +11,8 @@ package
 docs
 test
 *.tgz
-dist/*.d.ts
+@types
+benchmark
 out
 CODE_OF_CONDUCT.md
 CONTRIBUTING.md

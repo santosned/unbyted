@@ -1,18 +1,18 @@
 {
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  },
   "compilerOptions": {
-    "pretty": true,
-    "target": "ES5",
+    "target": "ES2015",
     "module": "ESNext",
-    "lib": ["es5"],
-    "allowUnusedLabels": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "esModuleInterop": true,
     "moduleResolution": "node",
     "declaration": true,
-    "emitDeclarationOnly": true,
-    "strict": true,
-    "outDir": "dist"
+    "esModuleInterop": true,
+    "outDir": "dist",
+    "strict": true
   },
-  "include": ["package/**/*"]
+  "include": ["package"],
+  "exclude": ["node_modules", "coverage"]
 }
